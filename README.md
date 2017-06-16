@@ -1,4 +1,4 @@
-#Twisst: Topology weightying by iterative sampling of sub-trees
+# Twisst: Topology weightying by iterative sampling of sub-trees
 
 Topology weighting is a means to quantify relationships between taxa that are not necessarily monophyletic. It's a simple, descriptive method, designed for exploring how relationship vary across the genome using population genomic data.
 
@@ -28,7 +28,7 @@ Firstly, monophyletic groups of samples from the same taxon can be collapsed and
 
 ---
 
-###Code
+### Code
 
 The main script, `twisst.py` implements the topology weighting.
 
@@ -46,7 +46,7 @@ The script `run_twisst_parallel.py` allows parallelisation using python `multipr
 
 ---
 
-###Input
+### Input
 
 The main input is a tree file containing one or more trees in newick format. Most variants of newick are accepted - see the [ETE documentation](http://etetoolkit.org/docs/latest/reference/index.html) for details.
 
@@ -56,7 +56,7 @@ All trees must contain all specified individual names as tip labels (see below.)
 
 ---
 
-###Output
+### Output
 
 There are two outputs:
 
@@ -66,7 +66,7 @@ There are two outputs:
 
 ---
 
-###Specifying taxa and individuals 
+### Specifying taxa and individuals 
 
 Taxa (groups) must be specified in the command line, using the `-g` flag. This flag must be present at least four times (with three groups there is only one possible unrooted topology).
 
@@ -106,7 +106,7 @@ Where groups.tsv is a text file containing the following:
 ```
 ---
 
-###Weighting method
+### Weighting method
 
 There are three options for the weighting method, specified with the `--method` flag.
 
@@ -116,7 +116,7 @@ The default method is `fixed`. This estimates the weightings by randomly samplin
 
 The third option is `threshold`. This is similar to the sampling method above, except that the sampling is repeated until a certain dynamic threshold is reached. After *n* iterations, each topology must have been observed **fewer** than *k* times OR **more** than *n-k* times, with combinations of *n* and *k* being specified by the user. This allows specification of a unique threshold dependng on the number of iterations (*n*) and the number of observations (*k*). For example, you can set the thresholds such that the 95% binomial confidence interval around each weighting is less than 5%. Thresholds must be specified in a file, using the flag `--thresholdTable`. The file gives iterations (*n*) in the first column and the threshold number of observations (*k*) in the second column. If tyhe particular *n* has no acceptible *k* (often the case for low *n*), then *k* of -1 can be specified. Two example threshold tables are provided. These give thresholds to ensure that the 95% CI (Calculated using the "Wilson" method) is less than 5% or 10%.
 
-###Pipeline to generate the input trees file
+### Pipeline to generate the input trees file
 
 There are various options for producing trees for windows across the genome. If you have whole genome sequence data, it is recommended to infer trees for narrow genomic intervals. 50 SNPs proved a useful window size in various simulations. If the window is too large, you may be averaging over regions of distinct ancestry, which can eliminate subtle quantitative variation in taxon relationships. However, if the interval is too small, you may have insufficient signal to infer a good tree.
 
